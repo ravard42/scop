@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:38:45 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 16:58:52 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:50:27 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@
 # include "gnome_chauve.xpm"
 
 /*
-** I - PARSING STRUCTS
+** I - STRUCTS
 */
 
-typedef struct			s_objf
+/*
+** a - parsing structs
+*/
+
+typedef struct			s_f_obj_p
 {
 	char				vn_only;
 	int					nb_v;
@@ -60,9 +64,9 @@ typedef struct			s_objf
 	int					nb_elem;
 	int					**elem;
 
-}						t_objf;
+}						t_f_obj_p;
 
-typedef struct			s_xpmf
+typedef struct			s_f_xpm_p
 {
 	int					size;
 	int					ncolors;
@@ -70,19 +74,19 @@ typedef struct			s_xpmf
 	char				**ascii;
 	int					*hexa;
 	char				*data_line;
-}						t_xpmf;
+}						t_f_xpm_p;
 
 /*
-** II - HEAP (tas) DYNAMICAL ALLOCATION DATA AND TEXTURE TO 3D RENDER
+** b - file.obj and file.xpm data structs to send to GPU
 */
 
-typedef struct			s_data
+typedef struct			s_vertex
 {
 	int					nb_vtnc;
 	GLfloat				*vtnc;
 	int					nb_elem;
 	GLint				*elem;
-}						t_data;
+}						t_vertex;
 
 typedef struct			s_tex
 {
@@ -91,7 +95,7 @@ typedef struct			s_tex
 }						t_tex;
 
 /*
-**  III - CAM AND OBJ
+**  c - Camera and objects
 */
 
 typedef struct			s_cam
@@ -104,7 +108,7 @@ typedef struct			s_cam
 typedef struct			s_obj
 {
 	char				id;
-	t_data				d;
+	t_vertex			v;
 	t_tex				t;
 	char				rot;
 	char				angle_rot;
@@ -114,7 +118,7 @@ typedef struct			s_obj
 }						t_obj;
 
 /*
-** IV - VARIABLES OPENGL (dialogue programme <-> carte graphique ...)
+** d - OpenGL structs (program <-> GPU)
 */
 
 typedef struct			s_sha
@@ -161,7 +165,7 @@ typedef struct			s_gl
 }						t_gl;
 
 /*
-** V - GLOBAL ENVIRONNEMENT
+** e - global environnement
 */
 
 typedef struct			s_env
@@ -177,54 +181,69 @@ typedef struct			s_env
 	t_gl				gl;
 }						t_env;
 
-int						init_glfw(t_env *e);
-int						init_glad(void);
-void					cpy_m(float dst[4][4], float src[4][4]);
-void					init_projection_matrix_and_uniform_att_ids(t_env *e);
-void					init_gl_buffers(t_env *e);
-void					init_cam_obj_data_tex_structs(t_env *e);
-void					gl_triangle_colors(t_env *e);
-void					gl_texture(t_env *e);
-void					set_callback(t_env *e);
+/*
+** II - FUNCTION PROTOTYPES
+*/
 
+/*
+** a - initialisation
+*/
+
+int						init_glfw(t_env *e);
+void					set_callback(t_env *e);
+int						init_glad(void);
 void					load_shader(t_env *e);
 void					load_program(t_env *e);
+void					init_gl_buffers(t_env *e);
+void					init_cam_obj_vertex_and_tex_structs(t_env *e);
+void					cpy_m(float dst[4][4], float src[4][4]);
+void					init_projection_matrix_and_uniform_att_ids(t_env *e);
 
-void					load_sqr_xpm(char **xpm, t_env *e);
+/*
+** b - file.obj parser
+*/
 
-// PARSER
+int						f_triangle_number(char *str, t_f_obj_p *o);
+int						recup_size(int fd, t_f_obj_p *o);
+void					parsing_alloc(t_f_obj_p *o);
+int						parsing_desalloc(t_f_obj_p *o);
 
-
-int						f_triangle_number(char *str, t_objf *o);
-int						recup_size(int fd, t_objf *o);
-void					parsing_alloc(t_objf *o);
-int						parsing_desalloc(t_objf *o);
-
-int						verif_vtn_nb_coord(char **tab, int nb);
-int						verif_vtn_in_f(t_objf *o, int i);
-int						verif_f(char *tab, t_objf *o);
-
+int						verif_vtn_in_f(t_f_obj_p *o, int i);
+int						verif_f(char *tab, t_f_obj_p *o);
 int						nb_param_error(char **tab, int x);
-int						vn_only_error(char *tab, t_objf *o);
+int						vn_only_error(char *tab, t_f_obj_p *o);
 int						invalid_face_error_msg(int nb);
 
-void					init_objf(t_objf *o);
-int						fill_objf(char *str, int *i, t_objf *o);
-void					fill_data_struct(t_objf *o, t_env *e);
+void					init_f_obj_p(t_f_obj_p *o);
+int						fill_f_obj_p(char *str, int *i, t_f_obj_p *o);
+void					fill_vertex_struct(t_f_obj_p *o, t_env *e);
 
-int						load_obj_data(char id, t_env *e);
+int						load_f_obj_data(char id, t_env *e);
 
-// SEND DATA TO GPU 
+/*
+** c - file.xpm parser
+*/
+
+void					load_sqr_xpm(char **xpm, t_env *e);
+void					tex_desalloc(t_env *e);
+
+/*
+** d - speak with GPU
+*/
+
+void					handle_texture_and_color(t_env *e);
+void					gl_triangle_colors(t_env *e);
+void					gl_texture(t_env *e);
+
+void					compute_and_send_uniform_atts_to_shaders(t_env *e);
 
 void					send_data_to_gpu(t_env *e, int id);
-void					data_desalloc(t_env *e);
 
+/*
+** e - other
+*/
 
-
-void					tex_desalloc(t_env *e);
 void					mouv_cam(t_env *c);
-void					compute_and_send_uniform_atts_to_shaders(t_env *e);
-void					handle_texture_and_color(t_env *e);
 void					exit_all(t_env *e);
 
 #endif

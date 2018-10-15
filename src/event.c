@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:32:30 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 12:55:27 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:44:37 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static void		init_key_obj_xpm_tabs(t_env *e)
 	e->key_tab[3] = Q;
 	e->key_tab[4] = W;
 	e->key_tab[5] = S;
-	e->obj_tab[0] = "./obj/sqr_vt.obj";
-	e->obj_tab[1] = "./obj/cube_vt.obj";
-	e->obj_tab[2] = "./obj/42leprechaun_vt.obj";
-	e->obj_tab[3] = "./obj/teapot_v.obj";
-	e->obj_tab[4] = "./obj/teapot2_v.obj";
-	e->obj_tab[5] = "./obj/panda_vtn.obj";
-	e->obj_tab[6] = "./obj/grifeu_vt.obj";
-	e->obj_tab[7] = "./obj/orc_vt.obj";
-	e->obj_tab[8] = "./obj/gnome_chauve_vt.obj";
-	e->obj_tab[9] = "./obj/test.obj";
+	e->obj_tab[0] = "./f_obj/sqr_vt.obj";
+	e->obj_tab[1] = "./f_obj/cube_vt.obj";
+	e->obj_tab[2] = "./f_obj/42leprechaun_vt.obj";
+	e->obj_tab[3] = "./f_obj/teapot_v.obj";
+	e->obj_tab[4] = "./f_obj/teapot2_v.obj";
+	e->obj_tab[5] = "./f_obj/panda_vtn.obj";
+	e->obj_tab[6] = "./f_obj/grifeu_vt.obj";
+	e->obj_tab[7] = "./f_obj/orc_vt.obj";
+	e->obj_tab[8] = "./f_obj/gnome_chauve_vt.obj";
+	e->obj_tab[9] = "./f_obj/test.obj";
 	e->xpm_tab[0] = circle_weave_xpm;
 	e->xpm_tab[1] = redbrick_xpm;
 	e->xpm_tab[2] = leprechaun_xpm;
@@ -65,7 +65,7 @@ static void		key_press(GLFWwindow *window, int key, t_env *e)
 	i = -1;
 	while (++i < NB_OBJ)
 		if (key == 320 + i
-				&& load_obj_data(i, e)
+				&& load_f_obj_data(i, e)
 				&& !(e->o.transi = 0.0f))
 			send_data_to_gpu(e, i);
 	i = -1;

@@ -6,13 +6,13 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 18:09:19 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 16:58:28 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:03:58 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void			init_objf(t_objf *o)
+void			init_f_obj_p(t_f_obj_p *o)
 {
 	o->vn_only = -1;
 	o->nb_v = 0;
@@ -25,7 +25,7 @@ void			init_objf(t_objf *o)
 	o->elem = NULL;
 }
 
-static int		handle_v_vt_vn(char **tab, int *i, t_objf *o)
+static int		handle_v_vt_vn(char **tab, int *i, t_f_obj_p *o)
 {
 	int		x;
 	int		k;
@@ -54,7 +54,7 @@ static int		handle_v_vt_vn(char **tab, int *i, t_objf *o)
 	return (1);
 }
 
-static int		handle_quad(int *i, t_objf *o)
+static int		handle_quad(int *i, t_f_obj_p *o)
 {
 	int	j;
 
@@ -73,7 +73,7 @@ static int		handle_quad(int *i, t_objf *o)
 	return (1);
 }
 
-static int		handle_f(char **tab, int *i, int nb_vert, t_objf *o)
+static int		handle_f(char **tab, int *i, int nb_vert, t_f_obj_p *o)
 {
 	char	**sp;
 	int		k;
@@ -100,7 +100,7 @@ static int		handle_f(char **tab, int *i, int nb_vert, t_objf *o)
 	return (0);
 }
 
-int				fill_objf(char *str, int *i, t_objf *o)
+int				fill_f_obj_p(char *str, int *i, t_f_obj_p *o)
 {
 	char		*tmp;
 	char		**tab;

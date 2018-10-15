@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:35:27 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 16:31:53 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:46:02 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ int			init(t_env *e)
 		return (0);
 	if (!init_glad())
 		return (0);
-	glEnable(GL_DEPTH_TEST);
 	load_shader(e);
 	load_program(e);
-	init_projection_matrix_and_uniform_att_ids(e);
+	glEnable(GL_DEPTH_TEST);
 	init_gl_buffers(e);
-	init_cam_obj_data_tex_structs(e);
-	set_callback(e);
+	init_cam_obj_vertex_and_tex_structs(e);
+	init_projection_matrix_and_uniform_att_ids(e);
 	return (1);
 }
 

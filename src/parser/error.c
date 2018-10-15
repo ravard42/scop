@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 07:43:27 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 16:54:56 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:52:02 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		sl_cpt(char *str)
 	return (cpt);
 }
 
-int				vn_only_error(char *tab, t_objf *o)
+int				vn_only_error(char *tab, t_f_obj_p *o)
 {
 	char	**sp;
 	int		i;
@@ -43,6 +43,24 @@ int				vn_only_error(char *tab, t_objf *o)
 	}
 	free_split(sp);
 	return (ret);
+}
+
+int				nb_param_error(char **tab, int x)
+{
+	int		i;
+	int		k;
+
+	i = (x == 1 || x == 3) ? 3 : 2;
+	k = -1;
+	while (tab[++k])
+		;
+	k--;
+	if (k < i)
+	{
+		ft_printf("error : wrong number of coordinate somewhere\n");
+		return (-1);
+	}
+	return (0);
 }
 
 int				invalid_face_error_msg(int nb_tri)
@@ -65,18 +83,5 @@ int				invalid_face_error_msg(int nb_tri)
 	if (!(i == 1 || i == 2) &&
 			ft_printf("parser only accepts triangles and quads\n"))
 		return (1);
-	return (0);
-}
-
-int				nb_param_error(char **tab, int x)
-{
-	int		i;
-
-	i = (x == 1 || x == 3) ? 3 : 2;
-	if (verif_vtn_nb_coord(tab, i) == -1)
-	{
-		ft_printf("error : wrong number of coordinate somewhere\n");
-		return (-1);
-	}
 	return (0);
 }

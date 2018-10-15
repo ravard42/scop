@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 22:08:03 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 10:30:53 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:51:22 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		ft_hex_atoi(char *str)
 	return (ret);
 }
 
-static void		load_xpm_bijection(char **xpm, t_xpmf *x)
+static void		load_xpm_bijection(char **xpm, t_f_xpm_p *x)
 {
 	int		i;
 	char	**split;
@@ -57,7 +57,7 @@ static void		load_xpm_bijection(char **xpm, t_xpmf *x)
 	}
 }
 
-static void		init_xpm_and_tex_structs(char **xpm, t_xpmf *x, t_env *e)
+static void		init_texture_structs(char **xpm, t_f_xpm_p *x, t_env *e)
 {
 	char			**split;
 	int				i;
@@ -78,7 +78,7 @@ static void		init_xpm_and_tex_structs(char **xpm, t_xpmf *x, t_env *e)
 	e->o.t.pix = (float *)malloc(sizeof(float) * x->size * x->size * 3);
 }
 
-static void		free_xpm_struct(t_xpmf *x)
+static void		free_xpm_struct(t_f_xpm_p *x)
 {
 	free_split(x->ascii);
 	free(x->hexa);
@@ -87,11 +87,11 @@ static void		free_xpm_struct(t_xpmf *x)
 
 void			load_sqr_xpm(char **xpm, t_env *e)
 {
-	t_xpmf		x;
-	int			var[3];
+	t_f_xpm_p		x;
+	int				var[3];
 
 	tex_desalloc(e);
-	init_xpm_and_tex_structs(xpm, &x, e);
+	init_texture_structs(xpm, &x, e);
 	var[0] = -1;
 	while (++var[0] < x.size * x.size)
 	{

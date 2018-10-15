@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:33:33 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/13 07:12:40 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:39:03 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		init_glfw(t_env *e)
 	}
 	glfwMakeContextCurrent(e->win);
 	glfwSetWindowUserPointer(e->win, e);
+	set_callback(e);
 	return (1);
 }
 
@@ -86,7 +87,7 @@ void	init_gl_buffers(t_env *e)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 }
 
-void	init_cam_obj_data_tex_structs(t_env *e)
+void	init_cam_obj_vertex_and_tex_structs(t_env *e)
 {
 	int		i;
 
@@ -100,10 +101,10 @@ void	init_cam_obj_data_tex_structs(t_env *e)
 	e->o.angle_rot = 0;
 	e->o.tex = 0;
 	e->o.transi = 0.0f;
-	e->o.d.nb_vtnc = 0;
-	e->o.d.vtnc = NULL;
-	e->o.d.nb_elem = 0;
-	e->o.d.elem = NULL;
+	e->o.v.nb_vtnc = 0;
+	e->o.v.vtnc = NULL;
+	e->o.v.nb_elem = 0;
+	e->o.v.elem = NULL;
 	e->o.t.nb_pix = 0;
 	e->o.t.pix = NULL;
 }

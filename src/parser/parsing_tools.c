@@ -6,13 +6,13 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 18:44:50 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 16:56:08 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:04:07 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-int				f_triangle_number(char *str, t_objf *o)
+int				f_triangle_number(char *str, t_f_obj_p *o)
 {
 	int		i;
 	char	**tab;
@@ -31,7 +31,7 @@ int				f_triangle_number(char *str, t_objf *o)
 	return (i);
 }
 
-static int		check_line(char *str, t_objf *o)
+static int		check_line(char *str, t_f_obj_p *o)
 {
 	int		nb_tri;
 
@@ -51,7 +51,7 @@ static int		check_line(char *str, t_objf *o)
 	return (0);
 }
 
-int				recup_size(int fd, t_objf *o)
+int				recup_size(int fd, t_f_obj_p *o)
 {
 	int		i;
 	char	*str;
@@ -74,7 +74,7 @@ int				recup_size(int fd, t_objf *o)
 	return (0);
 }
 
-void			parsing_alloc(t_objf *o)
+void			parsing_alloc(t_f_obj_p *o)
 {
 	int	i;
 	int	j;
@@ -100,7 +100,7 @@ void			parsing_alloc(t_objf *o)
 	}
 }
 
-int				parsing_desalloc(t_objf *o)
+int				parsing_desalloc(t_f_obj_p *o)
 {
 	int	i;
 

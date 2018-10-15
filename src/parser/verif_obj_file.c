@@ -6,13 +6,13 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 22:08:36 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/14 16:55:28 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 13:04:02 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-int		verif_f(char *tab, t_objf *o)
+int		verif_f(char *tab, t_f_obj_p *o)
 {
 	int		i;
 	int		k;
@@ -37,20 +37,7 @@ int		verif_f(char *tab, t_objf *o)
 	return (1);
 }
 
-int		verif_vtn_nb_coord(char **tab, int nb)
-{
-	int	k;
-
-	k = -1;
-	while (tab[++k])
-		;
-	k--;
-	if (k < nb)
-		return (-1);
-	return (1);
-}
-
-int		verif_vtn_in_f(t_objf *o, int i)
+int		verif_vtn_in_f(t_f_obj_p *o, int i)
 {
 	if (o->elem[i][0] >= o->nb_v
 			|| o->elem[i][1] >= o->nb_vt

@@ -10,7 +10,7 @@ SRC = lib/glad/src/glad.c\
 			src/parser/verif_obj_file.c\
 			src/parser/error.c\
 			src/parser/load_parsing_struct.c\
-			src/parser/load_data_struct.c\
+			src/parser/load_vertex_struct.c\
 			src/parser/parse.c\
 			src/send_data_to_gpu.c\
 			src/mouv_cam.c\
