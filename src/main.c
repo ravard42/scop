@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:35:27 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 13:46:02 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 14:50:56 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int			init(t_env *e)
 		return (0);
 	if (!init_glad())
 		return (0);
+	ft_printf("OpenGL version : %s\n", glGetString(GL_VERSION));
 	load_shader(e);
 	load_program(e);
 	glEnable(GL_DEPTH_TEST);
