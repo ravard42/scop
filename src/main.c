@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:35:27 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 14:50:56 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 16:25:53 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			init(t_env *e)
 	init_gl_buffers(e);
 	init_cam_obj_vertex_and_tex_structs(e);
 	init_projection_matrix_and_uniform_att_ids(e);
+	init_key_and_obj_tabs(e);
+	init_xpm_name_and_tab(e);
 	return (1);
 }
 

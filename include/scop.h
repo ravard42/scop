@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:38:45 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 15:39:14 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 16:35:38 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ typedef struct			s_env
 	float				transfo_m[4][4];
 	char				key_tab[6];
 	char				*obj_tab[10];
+	char				*xpm_name[5];
 	char				**xpm_tab[6];
 	GLFWwindow			*win;
 	t_gl				gl;
@@ -198,6 +199,8 @@ void					init_gl_buffers(t_env *e);
 void					init_cam_obj_vertex_and_tex_structs(t_env *e);
 void					cpy_m(float dst[4][4], float src[4][4]);
 void					init_projection_matrix_and_uniform_att_ids(t_env *e);
+void					init_key_and_obj_tabs(t_env *e);
+void					init_xpm_name_and_tab(t_env *e);
 
 /*
 ** b - file.obj parser
@@ -224,8 +227,8 @@ int						load_f_obj_data(char id, t_env *e);
 ** c - file.xpm parser
 */
 
-void					load_sqr_xpm(char **xpm, t_env *e);
-void					tex_desalloc(t_env *e);
+void					load_sqr_xpm(int id, char **xpm, t_env *e);
+int						tex_desalloc(t_env *e);
 
 /*
 ** d - speak with GPU

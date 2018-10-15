@@ -4,6 +4,7 @@ FLAGS = -Wall -Wextra -Werror
 SRC = lib/glad/src/glad.c\
 			src/main.c\
 			src/init.c\
+			src/init_tabs.c\
 			src/event.c\
 			src/load_shader.c\
 			src/parser/parsing_tools.c\
@@ -21,7 +22,7 @@ SRC = lib/glad/src/glad.c\
 	
 OBJ = $(SRC:.c=.o)
 
-INCL = -I lib/libft/include -I lib/glfw3/include -I lib/glad/include -I include/ -I xpm_files/
+INCL = -I lib/libft/include -I lib/glfw3/include -I lib/glad/include -I include/ -I f_xpm/
 LIB = -L ./lib/libft -lft -L ./lib/glfw3 -lglfw3 -framework AppKit -framework IOKit -framework CoreVideo
 
 all : $(NAME)

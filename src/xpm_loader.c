@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 22:08:03 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 15:39:13 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 16:35:32 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,11 @@ static void		free_xpm_struct(t_f_xpm_p *x)
 	free(x->data_line);
 }
 
-void			load_sqr_xpm(char **xpm, t_env *e)
+void			load_sqr_xpm(int id, char **xpm, t_env *e)
 {
 	t_f_xpm_p		x;
 	int				var[3];
 
-	tex_desalloc(e);
 	init_texture_structs(xpm, &x, e);
 	var[0] = -1;
 	while (++var[0] < x.size * x.size)
@@ -112,4 +111,5 @@ void			load_sqr_xpm(char **xpm, t_env *e)
 	if ((e->xpm_tab[5] = xpm) && e->o.tex)
 		gl_texture(e);
 	free_xpm_struct(&x);
+	ft_printf("%s loaded\n", e->xpm_name[id]);
 }
