@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:32:30 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 14:16:18 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 15:39:12 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		key_press(GLFWwindow *window, int key, t_env *e)
 
 	if (key == GLFW_KEY_ESCAPE)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-	else if (key == T)
+	else if (key == T && e->xpm_tab[5])
 		texture(e);
 	else if (key == R)
 		e->o.rot = (e->o.rot == 0) ? 1 : 0;
