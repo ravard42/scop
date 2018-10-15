@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:34:09 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/12 10:49:07 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 17:24:59 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static void		compil_glsl_debug(GLint status, char c, t_env *e)
 	if (c == 'v')
 	{
 		if (status)
-			ft_printf("compilation vertex shader OK\n");
+			ft_printf("\ncompilation vertex shader OK\n");
 		else
 		{
 			glGetShaderInfoLog(e->gl.sha.vert, sizeof(infolog), NULL, infolog);
-			ft_printf("Error compiling vertex shader : '%s'\n", infolog);
+			ft_printf("\nError compiling vertex shader : '%s'\n", infolog);
 		}
 	}
 	else if (c == 'f')
@@ -92,11 +92,11 @@ void			load_program(t_env *e)
 	glLinkProgram(e->gl.sha.prog);
 	glGetProgramiv(e->gl.sha.prog, GL_LINK_STATUS, &status);
 	if (status)
-		ft_printf("compilation program shader OK\n");
+		ft_printf("compilation program shader OK\n\n");
 	else
 	{
 		glGetProgramInfoLog(e->gl.sha.prog, sizeof(infolog), NULL, infolog);
-		ft_printf("Error compiling program shader : '%s'\n", infolog);
+		ft_printf("Error compiling program shader : '%s'\n\n", infolog);
 	}
 	glUseProgram(e->gl.sha.prog);
 }

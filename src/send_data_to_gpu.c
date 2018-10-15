@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 17:43:29 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 15:39:13 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 17:36:06 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void			send_data_to_gpu(t_env *e, int id)
 	e->gl.buf.nb_vertex = e->o.v.nb_elem * 3;
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * e->gl.buf.nb_vertex,
 			e->o.v.elem, GL_STATIC_DRAW);
-	ft_printf("%s <===> number of triangles = %d\n",
-			e->obj_tab[id], e->o.v.nb_elem);
+	ft_printf("%s loaded => number of triangles = %d\n",
+			e->obj_tab[id] + 6, e->o.v.nb_elem);
 	e->o.id = id;
 	vertex_desalloc(e);
 }
