@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 08:38:45 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 13:50:27 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 14:00:57 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,11 +231,9 @@ void					tex_desalloc(t_env *e);
 ** d - speak with GPU
 */
 
-void					handle_texture_and_color(t_env *e);
+void					compute_and_send_uniform_atts_to_shaders(t_env *e);
 void					gl_triangle_colors(t_env *e);
 void					gl_texture(t_env *e);
-
-void					compute_and_send_uniform_atts_to_shaders(t_env *e);
 
 void					send_data_to_gpu(t_env *e, int id);
 
