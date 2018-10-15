@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 17:43:29 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 13:47:18 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 14:17:08 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void			send_data_to_gpu(t_env *e, int id)
 	else
 		gl_texture(e);
 	glEnableVertexAttribArray(e->gl.loc.a.tex);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * e->o.v.nb_elem * 3,
-			e->o.v.elem, GL_STATIC_DRAW);
 	e->gl.buf.nb_vertex = e->o.v.nb_elem * 3;
-	vertex_desalloc(e);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * e->gl.buf.nb_vertex,
+			e->o.v.elem, GL_STATIC_DRAW);
+	ft_printf("%s <===> number of triangles = %d\n",
+			e->obj_tab[id], e->o.v.nb_elem);
 	e->o.id = id;
+	vertex_desalloc(e);
 }

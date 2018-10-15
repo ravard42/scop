@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 18:44:50 by ravard            #+#    #+#             */
-/*   Updated: 2018/10/15 13:04:07 by ravard           ###   ########.fr       */
+/*   Updated: 2018/10/15 14:05:48 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void			parsing_alloc(t_f_obj_p *o)
 	int	i;
 	int	j;
 
-	ft_printf("\n<< o->nb_elem = %d >>\n", o->nb_elem);
 	o->v = (float *)malloc(sizeof(float) * o->nb_v * 3);
 	o->vt = (float *)malloc(sizeof(float) * o->nb_vt * 2);
 	o->vn = (float *)malloc(sizeof(float) * o->nb_vn * 3);
