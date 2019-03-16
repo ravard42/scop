@@ -1,6 +1,7 @@
 CC = gcc
 NAME = scop
-FLAGS = -Wall -Wextra -Werror
+#FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra
 SRC = lib/glad/src/glad.c\
 			src/main.c\
 			src/init.c\
@@ -23,7 +24,9 @@ SRC = lib/glad/src/glad.c\
 OBJ = $(SRC:.c=.o)
 
 INCL = -I lib/libft/include -I lib/glfw3/include -I lib/glad/include -I include/ -I f_xpm/
-LIB = -L ./lib/libft -lft -L ./lib/glfw3 -lglfw3 -framework AppKit -framework IOKit -framework CoreVideo
+LIB = -lm -L ./lib/libft -lft -L ./lib/glfw3 -lglfw3 -lX11 -lpthread -lXrandr -ldl -lXxf86vm -lXinerama -lXcursor
+
+#LIB = -L ./lib/libft -lft -L ./lib/glfw3 -lglfw3 -framework AppKit -framework IOKit -framework CoreVideo
 
 all : $(NAME)
 
@@ -34,7 +37,7 @@ $(NAME) : ./lib/libft/libft.a $(OBJ)
 	make -C lib/libft
 
 %.o : %.c
-	$(CC) -o $@ -c $< $(FLAGS) $(INCL)
+	$(CC) -o $@ -c $< $(FLAGS) $(INCL) $(LIB)
 
 clean : 
 	rm -f $(OBJ)
